@@ -3,7 +3,59 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import styled from 'styled-components';
 
+
 export class SignUp extends Component {
+    state = {
+
+    }
+    handleChange (e) {
+        console.log(e)
+    }
+
+    handleSubmit (e) {
+        console.log(e)
+    }
+
+
+    render () {
+        return (
+            <div className="container">
+            <Form>
+             <Form.Group controlId="formBasicFirstName">
+              <Form.Label>First Name</Form.Label>
+              <Form.Control type="firstName" placeholder="First Name" />
+
+            </Form.Group>
+             <Form.Group controlId="formBasicLastName">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control type="lastName" placeholder="Last Name" />
+
+            </Form.Group>
+             <Form.Group controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Text className="text-muted">
+                 We'll never share your email with anyone else.
+              </Form.Text>
+            </Form.Group>
+
+            <Form.Group controlId="formBasicPassword">
+             <Form.Label>Password</Form.Label>
+             <Form.Control type="password" placeholder="Password" />
+            </Form.Group>
+            <Button variant="secondary" type="submit">
+             Sign up
+            </Button>
+           </Form>
+
+            </div>
+       )
+   }
+}
+
+
+
+/* export class SignUp extends Component {
     state = {
 
     }
@@ -45,3 +97,4 @@ export class SignUp extends Component {
         )
     }
 }
+ */

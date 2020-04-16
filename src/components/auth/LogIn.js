@@ -3,7 +3,47 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import styled from 'styled-components';
 
-export const LogIn = props => {
+export class LogIn extends Component {
+    state = {
+
+    }
+    handleChange (e) {
+        console.log(e)
+    }
+
+    handleSubmit (e) {
+        console.log(e)
+    }
+
+
+    render () {
+        return (
+            <div className="container">
+            <Form>
+             <Form.Group controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Text className="text-muted">
+                 We'll never share your email with anyone else.
+              </Form.Text>
+            </Form.Group>
+
+            <Form.Group controlId="formBasicPassword">
+             <Form.Label>Password</Form.Label>
+             <Form.Control type="password" placeholder="Password" />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+             Log in 
+            </Button>
+           </Form>
+
+            </div>
+       )
+   }
+}
+
+
+/*export const LogIn = props => {
     const {
         cancel,
         errors,
@@ -106,4 +146,4 @@ const ValidationLabel = styled.h2`
                      </Form.Group>
                  </React.Fragment>
              )} 
-/>
+/> */
