@@ -1,109 +1,82 @@
-import React, { Component } from 'react';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import styled from 'styled-components';
+import React, { Component } from "react";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import styled from "styled-components";
 
-export const LogIn = props => {
-    const {
-        cancel,
-        errors,
-        submit,
-        submitButtonText,
-        elements,
-        passwordErrors,
-    } = props;
+export class LogIn extends Component {
+  constructor(props) {
+    super(props);
+    this.onValueChange = this.onValueChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
 
-    function handleSubmit (e) {
-        event.preventDefault();
-        submit();
+    this.state = {};
+  }
+
+  // Form Values
+  onValueChange(e) {
+    this.setState({
+      ...this.state,
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    localStorage.setItem("user", JSON.stringify({ ...this.state })) &&
+      this.setState({});
+  }
+
+  // React Life Cycle
+  componentDidMount() {
+    this.userData = JSON.parse(localStorage.getItem("user"));
+
+    if (localStorage.getItem("user")) {
+      //IF USER IS FOUND, ROUTE USER TO HOME PAGE
+    } else {
+      // STAY IN THE LOGIN PAGE SO USER CAN LOGIN
+      this.setState({
+        email: "",
+        password: "",
+      });
     }
+  }
 
-    function handleCancel (e) {
-        event.preventDefault();
-        cancel();
-    }
-
+  render() {
     return (
-        <React.Fragment>
-            <ErrosDisplay errors= {erros} passwordErrors= {passwordErrors} />
-            <Form onSubmit={handleSubmit}>
-                {elements()}
+      <div className="container">
+        <Form>
+          <Form.Group controlId="formBasicFirstName">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              type="email"
+              name="email"
+              placeholder="Enter email"
+              onChange={this.onValueChange}
+            />
+            <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
 
-                <Button className="mr-1" variant="primary" type="submit">
-                    {submitButtonText}
-                </Button>
-                <Button className="mr-1" variant="secondary" onClick={handleCancel}>
-                    Cancel
-                </Button>
-            </Form>
-        </React.Fragment>
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              name="password"
+              placeholder="Password"
+              onChange={this.onValueChange}
+            />
+          </Form.Group>
+          <Button
+            type="submit"
+            className="btn btn-primary btn-block"
+            onClick={this.handleSubmit}
+          >
+            Log in
+          </Button>
+        </Form>
+      </div>
     );
-};
-
-function ErrosDisplay({ errors, passwordErrors}) {
-    let errorsDisplay = null;
-
-    if (errors.lenght) {
-        errors.Display = (
-            <React.Fragment>
-                <ValidationLabel>Errors:</ValidationLabel>
-                <ValidationUl>
-                    {errors.map((error, i) => (
-                        <li key={i}>{error}</li>
-                    ))}
-                </ValidationUl>
-            </React.Fragment>
-        );
-    } else if (!passwordErrors) {
-        errorsDisplay = (
-            <React.Fragment>
-                <ValidationLabel>Errors:</ValidationLabel>
-        <ValidationUl>{<li>Password must match</li>}</ValidationUl>
-            </React.Fragment>
-        );
-    }
-    return errorsDisplay
+  }
 }
-
-const ValidationUl = styled.div`
-   color: red;
-   padding: 15px 0 40px 10px;
-`;
-
-const ValidationLabel = styled.h2`
-   color: #0069c0;
-   font-size: 28px;
-`;
-
-
-
-<LogIn
-             cancel={this.cancel}
-             errors={errors}
-             submit={this.submit}
-             passwordErrors={confirmed}
-             submitButtonText="Log in"
-             elements={() => (
-                 <React.Fragment>
-                     <Form.Group controlId="formBasicEmail">
-                         <Form.Control
-                           type="email"
-                           name="email"
-                           value={email}
-                           placeholder="name@gmail.com"
-                           onChange={this.change}
-                         />
-                     </Form.Group>
-
-                     <Form.Group controlId="formBasicPassword">
-                         <Form.Control
-                           type="password"
-                           name="password"
-                           value={password}
-                           placeholder="Password"
-                           onChange={this.change}
-                         />
-                     </Form.Group>
-                 </React.Fragment>
-             )} 
-/>
