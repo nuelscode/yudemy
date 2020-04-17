@@ -48,10 +48,10 @@ export class SignUp extends Component {
     
             if (localStorage.getItem('user')) {
                 this.setState({
-                    firstName: this.userData.firstname,
-                    lastnName: this.userData.lastname,
+                    firstName: this.userData.firstName,
+                    lastnName: this.userData.lastName,
                     email: this.userData.email,
-                    password: this.userData.phone
+                    password: this.userData.password
                 })
             } else {
                 this.setState({
@@ -69,6 +69,14 @@ export class SignUp extends Component {
     
         onSubmit(e) {
             e.preventDefault()
+
+            this.setState({
+                firstName: '',
+                lastName: '',
+                email: '',
+                password: ''
+            })
+
             console.log(this.state.props)
         }
 
