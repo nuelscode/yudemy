@@ -7,3 +7,4 @@ export const TeachOnYudemy = () => (
          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo vitae ad possimus ab? Voluptates fuga nihil assumenda enim? Distinctio minima esse nesciunt sed? Dicta voluptas voluptatem dignissimos, ab nostrum incidunt culpa dolore quaerat quod ipsam nobis, doloribus illum enim fuga laboriosam! Libero quod enim blanditiis praesentium a voluptatibus error adipisci.</p>
     </div>
 )
+

@@ -26,7 +26,7 @@ const Style = styled.div`
  }
 `;
 
-export const Jumbotron = () => (
+ export const Jumbotron = () => (
     <Style>
         <Jumbo fluid className="jumbo">
             <div className="overlay">
@@ -38,3 +38,4 @@ export const Jumbotron = () => (
         </Jumbo>
     </Style>
 )
+
